@@ -1,13 +1,19 @@
 const express = require('express');
 require('./db/dbConfig')
 const app = express();
+const moment = require('moment');
 const PORT = 5000;
 const instructorLog = require('./db/model')
 app.use(express.json());
 
+
+function isValidTimestamp(timestamp) {
+  return moment(timestamp, moment.ISO_8601, true).isValid();
+}
+
 app.post('/api/checkin', async (req, res) => {
   const instructorId = req.body.instructorId, timestamp = req.body.timestamp;
-  if (!instructorId || !timestamp) {
+  if (!instructorId || !timestamp || !isValidTimestamp(timestamp)) {
     res.status(400).send('Please provide correct instructorId and timestamp');
     return;
   }
@@ -87,7 +93,7 @@ app.get('/api/monthly-report/:month/:year', async (req, res) => {
   result.forEach((item) => {
     item.totalCheckedInTime = convertMsToHrsMin(item.totalCheckedInTime);
   })
-  if (!result || result.length===0) {
+  if (!result || result.length === 0) {
     res.status(404).send('No data found');
   } else {
     res.status(200).json(result);
