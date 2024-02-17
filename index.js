@@ -42,7 +42,7 @@ app.post('/api/checkin', async (req, res) => {
 
 app.post('/api/checkout', async (req, res) => {
   const instructorId = req.body.instructorId, timestamp = req.body.timestamp;
-  if (!instructorId || !timestamp) {
+  if (!instructorId || !timestamp || !isValidTimestamp(timestamp)) {
     res.status(400).send('Please provide correct instructorId and timestamp');
     return;
   }
