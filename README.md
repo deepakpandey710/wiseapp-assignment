@@ -1,5 +1,5 @@
 
-# Instructor Tracking System
+#  Institute Instructor Attendance System
 
 ## Installation
 
