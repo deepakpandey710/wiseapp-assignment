@@ -31,3 +31,31 @@ npm start
 
 5. **Instructor-wise Total Checked-in Time for the Given Month:**
    - The system computes and provides instructor-wise total checked-in time for all instructors in the specified month.
+
+
+
+## Payload in api
+
+**checkin**
+url=http://localhost:5000/api/checkin
+payload:
+{
+  "instructorId": "1234",
+  "timestamp": "2024-02-18T01:10:50Z"
+}
+
+
+**checkout**
+url=http://localhost:5000/api/checkout
+payload:
+{
+  "instructorId": "1234",
+  "timestamp": "2024-02-18T02:10:50Z"
+}
+
+
+**monthly report**
+url=url= http://localhost:5000/api/monthly-report/month/year
+example: http://localhost:5000/api/monthly-report/2/2024
+
+
